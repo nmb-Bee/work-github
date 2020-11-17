@@ -1,19 +1,21 @@
 Rails.application.routes.draw do
+
 # 管理者側
   devise_for :admins, controllers: {
     sessions:      'admin/sessions',
     passwords:     'admin/passwords',
     registrations: 'admin/registrations'
   }
-  root 'admin/sessions#top'
+  # root 'admin/sessions#top'
   namespace :admin do
     resources :orders, only: [:index, :show, :update]
     resources :customers, only: [:index, :show, :edit, :update,]
     resources :order_items, only: [:update]
+    get '/top' => 'items#top', as: 'top'
     resources :items, exept: [:destroy]
     resources :genres, only: [:index, :create, :edit, :update]
   end
-  
+
 
 # 顧客側
   devise_for :customers, controllers: {
@@ -21,10 +23,11 @@ Rails.application.routes.draw do
     passwords:     'customer/passwords',
     registrations: 'customer/registrations'
   }
-  root 'items#top'
-  get '/about' => 'items#about', as: 'about'
-  
+
+
   namespace :customer do
+     root 'items#top'
+     get '/about' => 'items#about', as: 'about'
     resources :items, only: [:index, :show]
     resources :orders, only: [:new,  :create,  :index, :show] do
       collection do
@@ -39,7 +42,7 @@ Rails.application.routes.draw do
       end
     end
   end
-  
+
   scope :customer do
     resources :carts, only: [:index, :create, :update, :destroy] do
       collection do
