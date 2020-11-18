@@ -1,2 +1,30 @@
-<h1>Items#index</h1>
-<p>Find me in app/views/items/index.html.erb</p>
+<h1>商品一覧</h1>
+<!--プラスボタン-->
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>商品ID</th>
+      <th>商品名</th>
+      <th>税抜き価格</th>
+      <th>ジャンル</th>
+      <th>ステータス</th>
+    </tr>
+  </thead>
+
+  <!--複数のモデルの繰り返しデータ　　→　　コントローラーに変数を記載-->
+  <% @items each do |item| %>
+  <tr>
+    <td><%= item.id %></td>
+    <td><%= item.name %></td>
+    <!--消費税の考え方-->
+    <td><%= item.non_taxed_price %></td>
+    <td><%= item.genre.name %></td>
+    <td><%= items.on_sale %></td>
+
+
+  </tr>
+
+
+
+</table>
