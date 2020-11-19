@@ -4,13 +4,14 @@ class Customers::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters
   
   protected
-  
+
   def after_sign_in_path_for(resource)
-   items_path
+   customer_path(resource)
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:family_name, :first_name, :family_name_kana, :first_name_kana, :zipcode, :address, :phone_number ])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:family_name, :first_name, :family_name_kana, :first_name_kana, :email, :zipcode, :address, :phone_number ])
+    devise_parameter_sanitizer.permit(:sign_in, keys: [:email])
   end
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
