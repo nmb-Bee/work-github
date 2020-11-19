@@ -26,13 +26,12 @@ Rails.application.routes.draw do
     passwords:     'customers/passwords',
     registrations: 'customers/registrations'
   }
-
+  root 'customer/items#top'
+  get '/about' => 'customer/items#about', as: 'about'
 
   scope module: :customer do
     scope 'customers' do
-      
-      root 'items#top'
-      get '/about' => 'items#about', as: 'about'
+
       resources :items, only: [:index, :show]
       resources :orders, only: [:new,  :create,  :index, :show] do
        collection do
