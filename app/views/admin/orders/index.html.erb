@@ -1,1 +1,29 @@
-<h1>テスト</h1>
+<h1>注文履歴一覧</h1>
+<table>
+    <thead>
+        <tr>購入日時</tr>
+        <tr>購入者</tr>
+        <tr>注文個数</tr>
+        <tr>注文ステータス</tr>
+    </thead>
+    <tbody>
+        <% @orders.each do |order| %>
+        <tr>
+            <tb>
+                <%= link_to admin_order_path(order) do %>
+                  <% order.created_at %>
+                <% end %>
+            </tb>
+            <tb>
+                <% family_name(order.customer) %>
+            </tb>
+            <tb>
+                <% order.order_items.count %>
+            </tb>
+            <tb>
+                <% order.order_status %>
+            </tb>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
