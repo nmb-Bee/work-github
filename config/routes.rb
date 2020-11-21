@@ -3,13 +3,15 @@ Rails.application.routes.draw do
 # 管理者側
   scope module: :admin do
     devise_for :admins
-  end
-  # , controllers: {
-  #   sessions:      'admin/sessions',
-  #   passwords:     'admin/passwords',
-  #   registrations: 'admin/registrations'
+  #     , controllers: {
+  #   sessions:      'admins/sessions',
+  #   passwords:     'admins/passwords',
+  #   registrations: 'admins/registrations'
   # }
-  # root 'admin/sessions#top'
+  end
+  # root 'admins/sessions#new'
+
+
   namespace :admin do
     resources :orders, only: [:index, :show, :update]
     resources :customers, only: [:index, :show, :edit, :update,]

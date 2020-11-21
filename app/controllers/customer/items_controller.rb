@@ -6,6 +6,7 @@ class Customer::ItemsController < ApplicationController
   end
 
   def index
+    
   end
 
   def show
