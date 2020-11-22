@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
 # 管理者側
-  #scope module: :admin
+  #scope module: :admin do
     devise_for :admins
+  #
   # , controllers: {
   #   sessions:      'admin/sessions',
   #   passwords:     'admin/passwords',
@@ -38,7 +39,7 @@ Rails.application.routes.draw do
           get 'thanks'
         end
       end
-      resources :customers, only: [:show, :edit, :update, :quit, :out] do
+      resource :customers, only: [:show, :edit, :update, :quit, :out] do
         collection do
           get 'quit'
           patch 'out'
