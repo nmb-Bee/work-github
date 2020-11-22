@@ -3,9 +3,6 @@
 <h1>ジャンル編集</h1>
 
 <%= form_with model: @genre, url: admin_genre_path, local: true do |genre| %>
-    <div><%= f.label :name %>
-     <%= f.text_field :name %>
-    </div>
   <%= genre.radio_button :directed_graph, :true,checked: true %>
   <%= genre.label :directed_graph, "有効", {value: :true} %>
   <%= genre.radio_button :directed_graph, :false,checked: false %>
