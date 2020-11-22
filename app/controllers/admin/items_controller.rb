@@ -29,7 +29,8 @@ class Admin::ItemsController < ApplicationController
   end
 
   def top
-
+   now = Time.current
+   @orders = Order.where(created_at: now.all_day)
   end
 
   private

@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
 # 管理者側
-  #scope module: :admin
+  #scope module: :admin do
     devise_for :admins
+  #
   # , controllers: {
   #   sessions:      'admin/sessions',
   #   passwords:     'admin/passwords',
