@@ -39,7 +39,7 @@ Rails.application.routes.draw do
           get 'thanks'
         end
       end
-      resources :customers, only: [:show, :edit, :update, :quit, :out] do
+      resource :customers, only: [:show, :edit, :update, :quit, :out] do
         collection do
           get 'quit'
           patch 'out'
