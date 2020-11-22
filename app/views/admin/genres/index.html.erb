@@ -1,6 +1,4 @@
 <h1>ジャンル一覧・追加</h1>
-
-<<<<<<< Updated upstream
 <%= form_with model: @genre, url: admin_genres_path, local: true do |f| %>
     <%= f.label "ジャンル" %>
     <%= f.text_field :name %>
@@ -10,14 +8,6 @@
   <%= f.radio_button :directed_graph, :false,checked: false %>
   <%= f.label :directed_graph, "無効", {value: :false} %>
   <%= f.submit "追加"%>
-=======
-<%= form_with model: @genre, url: admin_genres_path, local: true do |genre| %>
-  <%= genre.radio_button :directed_graph, :true,checked: true %>
-  <%= genre.label :directed_graph, "有効", {value: :true} %>
-  <%= genre.radio_button :directed_graph, :false,checked: false %>
-  <%= genre.label :directed_graph, "無効", {value: :false} %>
-  <%= genre.submit "追加"%>
->>>>>>> Stashed changes
 <% end %>
 
 <table>
@@ -27,16 +17,12 @@
       <th>状態</th>
     </tr>
   </thead>
-
-
 <tbody>
-<% @genres. each do |genre| %>
 
+<% @genres. each do |genre| %>
 <td><%= genre.name %></td>
 <td><%= genre.directed_graph %></td>
 <td><%= link_to "編集する", edit_admin_genre_path(genre.id) %></td>
 </tbody>
-
 </table>
-
 <% end %>
