@@ -7,7 +7,7 @@ class Admin::GenresController < ApplicationController
     @genre = Genre.new
     # エラー等のメッセージは必要か？
     if @genre.save
-    redirect_to genre_path(@genre.id)
+    redirect_to genres_path
     else
       @genres = Genre.all
       render 'index'
@@ -32,7 +32,7 @@ class Admin::GenresController < ApplicationController
   private
 
   def genre_params
-    params.require(:genre).permit(:directed_graph)
+    params.require(:genre).permit(:name,:directed_graph)
   end
 
 end
