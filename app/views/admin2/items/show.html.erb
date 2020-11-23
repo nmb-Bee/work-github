@@ -1,0 +1,22 @@
+
+
+
+<h1>商品詳細</h1>
+
+<p>商品画像</p>
+
+<p>商品名</p>
+<p>商品説明</p>
+<p>ジャンル</p>
+<p>税込み価格（税抜き価格）　円</p>
+<p>販売ステータス</p>
+
+
+<td><%= @item.name %></td>
+<td><%= @item.explanation %></td>
+<td><%= @item.genre %></td>
+<td><%= @item.non_taxed_price %></td>
+<td><%= @item.on_sale %></td>
+
+
+<%= link_to "編集する", %>

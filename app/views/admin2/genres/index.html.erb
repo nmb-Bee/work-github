@@ -1,0 +1,31 @@
+
+
+
+
+<h1>ジャンル一覧・追加</h1>
+
+<%= form_with model: @genre, url: admin_genre_path, local: true do |genre| %>
+  <%= genre.radio_button :directed_graph, :true,checked: true %>
+  <%= genre.label :directed_graph, "有効", {value: :true} %>
+  <%= genre.radio_button :directed_graph, :false,checked: false %>
+  <%= genre.label :directed_graph, "無効", {value: :false} %>
+  <%= genre.submit "追加"%>
+<% end %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>ジャンル</th>
+      <th>状態</th>
+    </tr>
+  </thead>
+
+<% @genres each do |genre| %>
+
+<td><%= genre.name %></td>
+<td><%= genre.directed_graph %></td>
+<td><%= link_to "編集する",edit_path %></td>
+
+
+
+</table>
