@@ -4,7 +4,7 @@ class Customers::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters
   
   protected
-
+ 
   def after_sign_in_path_for(resource)
    customers_path(resource)
   end

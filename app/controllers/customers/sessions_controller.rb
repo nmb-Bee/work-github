@@ -5,7 +5,7 @@ class Customers::SessionsController < Devise::SessionsController
    before_action :reject_customer, only: [:create]
 protected
   # 退会済のユーザーを弾く
-  def reject_customer
+  def reject_customer 
     @customer = Customer.find_by(email: params[:customer][:email].downcase)
     if @customer
       if (@customer.valid_password?(params[:customer][:password]) && (@customer.active_for_authentication? == false))

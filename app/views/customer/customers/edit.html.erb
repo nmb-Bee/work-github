@@ -5,6 +5,24 @@
     <%= f.text_field :first_name %>
     <%= f.label :"フリガナ" %>
     <%= f.text_field :family_name_kana %>
+    <%= f.text_field :first_name_kana %> 
+    <%= f.label :"メールアドレス" %>
+    <%= f.email_field :email %>
+    <%= f.label :"郵便番号" %>
+    <%= f.text_field :zipcode %>
+    <%= f.label :住所 %>
+    <%= f.text_field :address %>
+    <%= f.label :電話番号 %>
+    <%= f.text_field :phone_number %>
+    <%= f.submit "編集内容を保存する" %>
+    <%= link_to "退会する", quit_customers_path %>
+<% end %><h1>登録情報編集</h1>
+<%= form_with model:@customer, url:customers_path, local:true do |f| %>
+    <%= f.label :"氏名" %>
+    <%= f.text_field :family_name, autofocus: true %>
+    <%= f.text_field :first_name %>
+    <%= f.label :"フリガナ" %>
+    <%= f.text_field :family_name_kana %>
     <%= f.text_field :first_name_kana %>
     <%= f.label :"メールアドレス" %>
     <%= f.email_field :email %>
