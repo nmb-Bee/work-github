@@ -4,11 +4,11 @@
        <ul class="nav navbar-nav navbar-right">
         <% if customer_signed_in? %>
         <!--顧客がログインしている場合-->
-          <li><%= link_to 'マイページ', customer_path(current_customer, class: "btn btn-default") %></li>
+          <li><%= link_to 'マイページ', customers_path(current_customer, class: "btn btn-default") %></li>
           <li><%= link_to '商品一覧', items_path, class: "btn btn-default" %></li>
           <li><%= link_to 'カート', carts_path, class: "btn btn-default" %></li>
           <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: "btn btn-default" %></li>
-          
+
         <% elsif admin_signed_in? %>
         <!--管理者がログインしている場合-->
         　<li><%= link_to '商品一覧', admin_items_path, class: "btn btn-default" %></li>
@@ -16,14 +16,14 @@
         　<li><%= link_to '注文履歴一覧', admin_orders_path, class: "btn btn-default" %></li>
         　<li><%= link_to 'ジャンル一覧', admin_genres_path, class: "btn btn-default" %></li>
         　<li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "btn btn-default" %></li>
-          
+
         <% else %>
         <!--ログインしていない場合-->
           <li><%= link_to 'About', about_path, class: "btn btn-default" %></li>
           <li><%= link_to '商品一覧', items_path, class: "btn btn-default" %></li>
           <li><%= link_to '新規登録', new_customer_registration_path, class: "btn btn-default" %></li>
           <li><%= link_to 'ログイン', new_customer_session_path, class: "btn btn-default" %></li>
-          
+
         <% end %>
       </ul>
   </div>
