@@ -1,13 +1,14 @@
 class Admin::GenresController < ApplicationController
   def index
     @genres = Genre.all
+    @genre = Genre.new
   end
 
   def create
-    @genre = Genre.new
+    @genre = Genre.new(genre_params)
     # エラー等のメッセージは必要か？
     if @genre.save
-    redirect_to genre_path(@genre.id)
+    redirect_to admin_genres_path
     else
       @genres = Genre.all
       render 'index'
@@ -22,17 +23,24 @@ class Admin::GenresController < ApplicationController
     @genre = Genre.find(params[:id])
     # エラー等のメッセージは必要か？
     if @genre.update(genre_params)
-      redirect_to genre_path(@genre)
+      redirect_to admin_genres_path
     else
       render "edit"
     end
 
   end
 
+  def destroy
+    @genre = Genre.find(params[:id])
+    @genre.destroy
+    redirect_to admin_genres_path
+
+  end
+
   private
 
   def genre_params
-    params.require(:genre).permit(:directed_graph)
+    params.require(:genre).permit(:name,:directed_graph)
   end
 
 end

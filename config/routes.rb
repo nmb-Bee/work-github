@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     resources :order_items, only: [:update]
     get '/top' => 'items#top', as: 'top'
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
-    resources :genres, only: [:index, :create, :edit, :update]
+    resources :genres, only: [:index, :create, :edit, :update, :destroy]
   end
 
 

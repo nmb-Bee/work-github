@@ -1,41 +1,38 @@
 <h1>商品詳細</h1>
 
   <div class="col-xs-4">
-   <%= form_with model:item, local:true do |f| %>
-
 　 <div class="field row">
-　     <label class="control-label sr-only">商品画像</label>
-　  <%= attachment_image_tag @item, :image, class: "img-square", fallback: "no_image.jpg", size:"300x300" %>
+　     <div class="itemimage">商品画像</div>
+　  <%= attachment_image_tag(@item, :image, :fill, 100, 100, fallback: "no_image.jpg") %>
 　 </div>
-　　<%= f.attachment_field :image %>
-　　<% end %>
+
 　</div>
 
 
  <div class="col-xs-8">
    <div class="field row">
-    <label class="control-label sr-only">商品名</label>
-     <%= @item.name %>
+    <div class="itemname">商品名
+     <%= @item.name %></div>
    </div>
 
    <div class="field row">
-    <label class="control-label sr-only">商品説明</label>
-     <%= @item.explanation %>
+    <div class="itemexplanation">商品説明
+     <%= @item.explanation %></div>
    </div>
 
    <div class="field row">
-    <label class="control-label sr-only">ジャンル</label>
-     <%= @item.genre %>
+    <div class="itemgenre">ジャンル
+     <%= @item.genre.name%></div>
    </div>
 
    <div class="field row">
-    <label class="control-label sr-only">税込み価格（税抜き価格）</label>
-     <%= @item.non_taxed_price %>　円
+   <div class="itemprice">税抜き価格
+     <%= @item.non_taxed_price %>　円 </div>
    </div>
 
    <div class="field row">
-    <label class="control-label sr-only">販売ステータス</label>
-     <%= @item.on_sale %>
+    <div class="itemsale">販売ステータス
+     <%= @item.on_sale %> </div>
    </div>
 
    <%= link_to "編集する", edit_admin_item_path(@item.id), class: "btn btn-primary " %>
