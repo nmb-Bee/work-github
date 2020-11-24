@@ -1,5 +1,7 @@
 class Customer::OrdersController < ApplicationController
   def new
+    @order = Order.new
+    @address = Address.where(customer: current_customer)
   end
 
   def log
@@ -15,5 +17,10 @@ class Customer::OrdersController < ApplicationController
   end
 
   def show
+  end
+  
+  private
+  def address_params
+    params.require(:order).permit(:zipcode, :address, :name)
   end
 end
