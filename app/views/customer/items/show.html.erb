@@ -1,14 +1,20 @@
 <div class="container">
   <div class="row">
    <div class="col-xs-4">
-
-<h3>ジャンル検索</h3>
-<table>
-  ケーキ</br>
-  焼き菓子</br>
-  プリン</br>
-  キャンディ</br>
-</table>
-</div>
-</div>
+   <h3>ジャンル検索</h3>
+   <% @genres.each do |genre| %>
+   <table>
+   <td><%= genre.name %></td></br>
+  </table>
+   <% end %>
+   </div>
+  <div class="col-xs-8">
+   <tr>
+   <td><%= attachment_image_tag(@item, :image, :fill,500, 250, fallback: "no_image.jpg") %></td>
+   <h1 class="imagenamecs"><%= @item.name %></h1>
+   <td><%= @item.explanation %></td>
+   <td><%= @item.non_taxed_price %>円</td>
+  </tr>
+  </div>
+  </div>
 </div>

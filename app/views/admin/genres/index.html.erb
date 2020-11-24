@@ -17,12 +17,15 @@
       <th>状態</th>
     </tr>
   </thead>
-<tbody>
 
 <% @genres. each do |genre| %>
+<tbody>
+<tr>
 <td><%= genre.name %></td>
 <td><%= genre.directed_graph %></td>
 <td><%= link_to "編集する", edit_admin_genre_path(genre.id) %></td>
+<td><%= link_to "Destroy", admin_genre_path(genre), method: :delete %></td>
+</tr>
 </tbody>
 </table>
 <% end %>
