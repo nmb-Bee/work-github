@@ -1,2 +1,21 @@
-<h1>Carts#index</h1>
-<p>Find me in app/views/carts/index.html.erb</p>
+<h1>ショッピングカート</h1>
+<table class="table">
+      <thead>
+        <tr>
+          <th>商品名</th>
+          <th>単価(税込)</th>
+          <th>数量</th>
+          <th>小計</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @carts.each do |cart| %>
+          <tr>
+            <td><%= cart.item.name %></td>
+            <td>¥<%= tax_price(cart.item.non_taxed_price).floor %></td>
+            <td><%= cart.quantity %></td>
+            <td>¥<%= (sub_price(cart)*1.1).floor %></td>
+        <% end %>
+      </tbody>
+</table>
