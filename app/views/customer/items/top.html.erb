@@ -5,7 +5,7 @@
 <h3>ジャンル検索</h3>
 <% @genres.each do |genre| %>
 <table>
-  <td><%= link_to genre.name, search_items_path(genre.id), method: :get %></td></br>
+  <td><%= link_to genre.name %></td></br>
 </table>
 <% end %>
 </div>

@@ -5,7 +5,8 @@
 <h3>ジャンル検索</h3>
 <% @genres.each do |genre| %>
 <table>
-  <td><%= genre.name %></td></br>
+  <!--有効のみ表示したい-->
+  <td><%= link_to genre.name %></td></br>
 </table>
 <% end %>
 </div>
@@ -20,8 +21,6 @@
 <td>￥<%= (item.non_taxed_price*1.1).floor %></td>
 </tr>
 <% end %>
-</br>
-<%= paginate @items %>
 </div>
 </div>
 </div>
