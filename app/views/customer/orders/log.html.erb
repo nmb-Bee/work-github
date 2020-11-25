@@ -43,8 +43,7 @@
           </tr>
           <tr>
             <th class="info">商品合計</th>
-            <% byebug %>
-            <td class="text-right">¥<%= @order.payment.to_s(:delimited) %></td>
+            <td class="text-right">¥<%= @order.tax_price.to_s(:delimited) %></td>
           </tr>
           <tr>
             <th class="info">請求金額</th>

@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2020_11_24_065827) do
     t.string "phone_number"
     t.string "zipcode"
     t.string "address"
-    t.boolean "is_deleted"
+    t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email", default: "", null: false
@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 2020_11_24_065827) do
     t.string "zipcode"
     t.string "address"
     t.integer "payment"
-    t.integer "shipfee"
+    t.integer "shipfee", default: 800
     t.integer "order_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
