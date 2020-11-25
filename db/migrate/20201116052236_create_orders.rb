@@ -5,7 +5,7 @@ class CreateOrders < ActiveRecord::Migration[5.2]
       t.string :zipcode
       t.string :address
       t.integer :payment
-      t.integer :shipfee
+      t.integer :shipfee, default: 800
       t.integer :order_status
 
       t.timestamps

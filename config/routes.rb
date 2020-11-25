@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     resources :order_items, only: [:update]
     get '/top' => 'items#top', as: 'top'
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
-    resources :genres, only: [:index, :create, :edit, :update, :destroy]
+    resources :genres, only: [:index, :create, :edit, :update]
   end
 
 
@@ -53,4 +53,7 @@ Rails.application.routes.draw do
      resources :addresses, only: [:index, :create, :edit, :update, :destroy]
    end
   end
+
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
 end
