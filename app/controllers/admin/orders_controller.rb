@@ -1,4 +1,5 @@
 class Admin::OrdersController < ApplicationController
+  
   before_action :authenticate_admin!
 
   def index
@@ -7,16 +8,15 @@ class Admin::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @order_items = @order.o
+    @order_items = @order
   end
 
   def update
     @order = Order.find(params[:id])
     if @order.update(order_params)
-       flash[:success] = '変更しました'
        redirect_to admin_order_path(@order)
     else
-       render :show
+       render 'show'
     end
   end
 
