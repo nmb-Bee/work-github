@@ -15,11 +15,16 @@
       <tbody>
         <%# @cart.each do |cart| %>
           <tr>
+            <td><%= attachment_image_tag(@cart.item, :image, :fill,500, 250, fallback: "no_image.jpg") %></td>
             <td><%= @cart.item.name %></td>
             <td>¥<%= tax_price(@cart.item.non_taxed_price).floor %></td>
             <td><%= @cart.quantity %></td>
             <td>¥<%= (sub_price(@cart)*1.1).floor %></td>
-            <td><%#= link_to "削除する", cart_path(@cart.id) %></td>
+            <%= form_with model: @cart, local: true do |f| %>
+            <%= f.select :quantity, (1..10).to_a,  class: "form-control product-show-form-control" %>
+		 　　　　 <%= f.submit "変更" %>
+            <% end %>
+            <td><%#= link_to "削除する", cart_path(@cart.id), method: :delete, class:"btn btn-danger" %></td>
         <%# end %>
       </tbody>
 </table>
