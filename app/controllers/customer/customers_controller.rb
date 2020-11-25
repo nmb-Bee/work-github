@@ -4,18 +4,21 @@ class Customer::CustomersController < ApplicationController
   end
 
   def edit
+    @customer = current_customer
   end
 
   def update
+    @customer = current_customer
+    @customer.update(customer_params)
+    redirect_to customers_path
   end
 
   def quit
   end
 
   def out
-    @customer = Customer.find(params[:id])
-    # defaultがtrueになってしまったのでfalseで退会
-    @customer.update(is_deleted: false)
+    @customer = current_customer
+    @customer.update(is_deleted: true)
     # ログアウトしてトップページに飛ぶ
     reset_session
     flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
