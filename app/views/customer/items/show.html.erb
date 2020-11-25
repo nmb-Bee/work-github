@@ -10,6 +10,7 @@
    </div>
   <div class="col-xs-8">
     <%= form_with model: @cart, url: carts_path, local: true do |f| %>
+    <%= f.hidden_field :item_id, :value => @item.id %>
    <tr>
    <td><%= attachment_image_tag(@item, :image, :fill,500, 250, fallback: "no_image.jpg") %></td>
    <h1 class="imagenamecs"><%= @item.name %></h1>
