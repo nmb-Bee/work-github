@@ -55,37 +55,3 @@
       </div>
     </div>
   </div>
-
-
-<h1>本当に退会しますか？</h1>
-<p>退会すると、会員登録情報やこれまでの購入履歴が閲覧できなくなります。退会する場合は、「退会する」をクリックしてください。</p>
-
-  <%= link_to "退会する", out_customers_path(current_customer), method: :patch, "data-confilm" => "本当に退会しますか？" %>
-
-
-
-<h1>マイページ</h1>
-<h1>登録情報</h1>
-<%= link_to '編集する', edit_customer_path %>
-<table>
-<tbody>
-  <tr>
-<p>氏名</p><%= @customer.family_name %>
-<%= @customer.first_name %>
-<p>カナ</p><%= @customer.family_name_kana %>
-<%= @customer.first_name_kana %>
-</tr>
-<tr>
-<p>郵便番号</p><%= @customer.zipcode %>
-</tr>
-<tr>
-<p>住所</p><%= @customer.address %>
-</tr>
-<tr>
-<p>電話番号</p><%= @customer.phone_number %>
-</tr>
-<tr>
-<p>メールアドレス</p><%= @customer.email %>
-</tr>
-</tbody>
-</table>
