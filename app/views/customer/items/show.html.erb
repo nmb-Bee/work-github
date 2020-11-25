@@ -9,15 +9,17 @@
    <% end %>
    </div>
   <div class="col-xs-8">
-    <%= form_with model: @cart, url: carts_path, local: true do |f| %>
-    <%= f.hidden_field :item_id, :value => @item.id %>
+
    <tr>
    <td><%= attachment_image_tag(@item, :image, :fill,500, 250, fallback: "no_image.jpg") %></td>
    <h1 class="imagenamecs"><%= @item.name %></h1>
    <td><%= @item.explanation %></td>
    <td>￥<%= (@item.non_taxed_price*1.1).floor %>（税込み価格）</td>
-    <%= f.select :quantity, [["1",1],["2",2],["3",3],["4",4],["5",5],["6",6],["7",7],["8",8],["9",9],["10",10]] %>
-		<%= f.submit "カートに入れる" %>
+
+    <%= form_with model: @cart, url: carts_path,  local: true do |f| %>
+    <%= f.hidden_field :item_id, value: @item.id %>
+    <%= f.select :quantity, (1..10).to_a,  class: "form-control product-show-form-control" %>
+		  <%= f.submit "カートに入れる" %>
    </tr>
    <% end %>
   </div>
