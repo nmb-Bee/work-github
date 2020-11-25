@@ -18,7 +18,7 @@
                <p><%= f.radio_button :address_option, "address", checked: true  %>
                  ご自身の住所
                   <div><%= current_customer.zipcode %><%= current_customer.address %></div>
-                  <div><%#= current_customer.name %></div>
+                  <div><%= current_customer.name %></div>
                   
                </p>
                <p><%= f.radio_button :address_option, "addresses" %>
