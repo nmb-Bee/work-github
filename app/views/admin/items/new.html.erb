@@ -2,8 +2,8 @@
  <div class= "row">
   <h1>商品新規登録</h1>
 
+<%= form_with model:@item, url: admin_items_path, local:true do |f| %>
   <div class="col-xs-4">
-   <%= form_with model:@item, url: admin_items_path, local:true do |f| %>
 　 <div class="field row">
 　   <%= f.label :商品画像 %>
 　   <%= f.attachment_field :image %>
@@ -11,38 +11,37 @@
 　</div>
 
   <div class="col-xs-8">
-   <div class="field row">
+   <div class="item_name">
      <%= f.label :商品名 %>
-     <%= f.text_field :name, class: 'col-xs-3' %>
+     <%= f.text_field :name %>
    </div>
 
 
-   <div class="field row">
+   <div class="item_explanation">
     <%= f.label :商品説明 %>
-    <%= f.text_area :explanation, class: 'col-xs-3' %>
+    <%= f.text_area :explanation %>
    </div>
 
-   <div>
+   <div class="item_genre">
       <%= f.label :ジャンル %>
-
       <%= f.collection_select :genre_id, Genre.all, :id, :name, :prompt =>'---選択してください---' %>
    </div>
 
-   <div class="field row">
+   <div class="item_non_taxed_price">
       <%= f.label :税抜き価格 %>
-      <%= f.text_field :non_taxed_price, class: 'col-xs-3' %>円
+      <%= f.text_field :non_taxed_price %>円
    </div>
 
-   <div class="field row">
-      <label class="control-label sr-only">販売ステータス</label>
-      <%= f.select :on_sale, ["販売中", "販売停止"] ,class: "col-xs-3"%>
+   <div class="item_on_sale">
+      <%= f.label :販売ステータス %>
+      <%= f.select :on_sale, ["販売中", "販売停止"] %>
    </div>
 
    <div class="actions row">
     <%= f.submit :"新規登録", class: 'btn btn-primary col-xs-3' %>
    </div>
-    <% end %>
     </div>
+    <% end %>
    </div>
   </div>
 

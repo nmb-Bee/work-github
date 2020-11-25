@@ -5,7 +5,7 @@
 <h3>ジャンル検索</h3>
 <% @genres.each do |genre| %>
 <table>
-  <td><%= genre.name %></td></br>
+  <td><%= link_to genre.name %></td></br>
 </table>
 <% end %>
 </div>
@@ -19,7 +19,10 @@
 <td><%= item.name %></td>
 <td>￥<%= (item.non_taxed_price*1.1).floor %></td>
 </tr>
-<% end %>
+<% end %></br>
+
+<%= link_to "もっとみる", items_path %>
+
 </div>
 
 </div>
