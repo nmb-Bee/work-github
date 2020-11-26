@@ -19,7 +19,6 @@ class Customer < ApplicationRecord
     end
     return sum
   end
-end
 
   has_many :addresses, dependent: :destroy
 end
