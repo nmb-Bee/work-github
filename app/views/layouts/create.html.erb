@@ -13,7 +13,7 @@
 
 
       <tbody>
-        <% @cart.each do |cart| %>
+        <% @carts.each do |cart| %>
           <tr>
             <td><%= attachment_image_tag(cart.item, :image, :fill,500, 250, fallback: "no_image.jpg") %></td>
             <td><%= cart.item.name %></td>
@@ -25,6 +25,6 @@
 		 　　　　 <%= f.submit "変更" %>
             <% end %>
             <td><td><%= link_to "削除する", cart_path(cart), method: :delete %></td></td>
-        <%# end %>
+        <% end %>
       </tbody>
 </table>
