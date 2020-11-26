@@ -1,4 +1,6 @@
-<h1>ショッピングカート</h1>
+<h1>ショッピングカートIndex</h1>
+
+<%= link_to "カートを空にする", all_destroy_carts_path, method: :delete, class: "btn btn-sm btn-danger" %>
 <table class="table">
       <thead>
         <tr>
@@ -9,13 +11,15 @@
         </tr>
       </thead>
 
+
       <tbody>
-        <% @carts.each do |cart| %>
+        <%# @carts.each do |item| %>
           <tr>
-            <td><%= cart.item.name %></td>
-            <td>¥<%= tax_price(cart.item.non_taxed_price).floor %></td>
-            <td><%= cart.quantity %></td>
-            <td>¥<%= (sub_price(cart)*1.1).floor %></td>
-        <% end %>
+            <td><%#= @cart.item.name %></td>
+            <td>¥<%#= tax_price(cart.item.non_taxed_price).floor %></td>
+            <td><%#= @cart.quantity %></td>
+            <td>¥<%#= (sub_price(cart)*1.1).floor %></td>
+            <td><%#= link_to "削除する", cart_path(cart.id) %></td>
+        <%# end %>
       </tbody>
 </table>
