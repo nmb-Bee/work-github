@@ -27,7 +27,7 @@
                   <%= cart.quantity %>
               </td>
               <td class="text-right">
-                ¥<%= purchase_price(cart).to_s(:delimited) %>
+                ¥<%= (cart.item.non_taxed_price * cart.quantity*1.1).floor.to_s(:delimited) %>
               </td>
             </tr>
           <% end %>
@@ -59,3 +59,14 @@
         <div><%= @order.zipcode %>
         <%= @order.address %></div>
         <div><%= @order.name %></div>
+        
+        
+    <div class ="col-xs-11">
+      <%= form_with model: @order, url: thanks_orders_path, method: :get, local: true do |f| %>
+        <%= f.hidden_field :zipcode %>
+        <%= f.hidden_field :address %>
+        <%= f.hidden_field :name %>
+        <%= f.hidden_field :payment %>
+        <%= f.hidden_field :total_price %>
+        <%= f.submit "購入を確定する", class: "btn btn-warning center-block col-xs-5" %>
+      <% end %>
