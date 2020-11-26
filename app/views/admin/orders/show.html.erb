@@ -1,5 +1,7 @@
 <div class="container">
-  <h1>注文履歴詳細</h1>
+  <div class="title">
+    <h1>注文履歴詳細</h1>
+  </div>
   <div class="row">
     <div class="col-xs-12">
       <div class="field">
@@ -29,29 +31,48 @@
       <% end %>
     </div>
   </div>
-
-  <table>
-    <thead>
-      <tr>
-        <th>商品名</th>
-        <th>単価（税込）</th>
-        <th>数量</th>
-        <th>小計</th>
-        <th>制作ステータス</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @order_items.each do |order_item| %>
-        <tr>
-          <td><%= order_item.item.name %></td>
-          <td>¥</td>
-          <td><%= order_item.count %></td>
-          <tb>¥<%= price(order_item).to_s %></tb>
-            <%= form_with(order_item, url: admin_order_item_path), method: :patch) do |f| %>
-              <tb><%= f.submit '更新' %></tb>
-            <% end %>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <div class="row">
+    <div class="col-xs-12">
+      <table border="1">
+        <thead>
+          <tr bgcolor="#dcdcdc">
+            <th width="30%">商品名</th>
+            <th width="10%">単価（税込）</th>
+            <th width="10%">数量</th>
+            <th width="10%">小計</th>
+            <th width="40%">制作ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order_items.each do |order_item| %>
+            <tr>
+              <td width="30%"><%= order_item.item.name %></td>
+              <td width="10%">¥<%= tax_price(order_item.product.non_taxed_price).floor %></td>
+              <td width="10%"><%= order_item.quantity %></td>
+              <tb width="10%">¥<%= (sub_price(order_item)*1.1).floor %></tb>
+                <%= form_with(order_item, url: admin_order_item_path),local: true, method: :patch) do |f| %>
+                  <tb width="40%"><%= f.submit '更新' %></tb>
+                <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-xs-3">
+		<table>
+			<tr>
+        <th>商品合計</th>
+				<td>¥<%= total_price(@order_items).floor %></td>
+			</tr>
+			<tr>
+				<th>送料</th>
+				<td>¥<%= @order.postage.floor %></td>
+			</tr>
+			<tr>
+				<th>請求金額合計</th>
+				<td>¥<%= @order.total_price.floor %></td>
+			</tr>
+		</table>
+	</div>
 </div>
