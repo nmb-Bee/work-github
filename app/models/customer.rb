@@ -20,3 +20,4 @@ class Customer < ApplicationRecord
     return sum
   end
 
+end
