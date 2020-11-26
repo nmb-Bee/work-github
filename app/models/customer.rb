@@ -9,9 +9,9 @@ class Customer < ApplicationRecord
   def active_for_authentication?
     super && (self.is_deleted == false)
   end
-  
+
   has_many :addresses, dependent: :destroy
-  
+
   def total_price
     sum = 0
     self.carts.each do |cart_item|
@@ -20,3 +20,4 @@ class Customer < ApplicationRecord
     return sum
   end
 end
+

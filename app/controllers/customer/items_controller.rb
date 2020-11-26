@@ -10,7 +10,7 @@ class Customer::ItemsController < ApplicationController
   end
 
   def index
-    @genres = Genre.all
+    @genres = Genre.where(directed_graph: true)
     @items = Item.page(params[:page]).per(5)
 
   end
