@@ -8,13 +8,13 @@ class Customer::OrdersController < ApplicationController
     @carts = Cart.all
 		@order = Order.new
 
-		if params[:address_option] == "address" 
+		if params[:address_option] == "address"
       #ご自身の住所
       @order.zipcode = current_customer.zipcode
       @order.address = current_customer.address
       @order.name = current_customer.family_name + current_customer.first_name
 
-    elsif params[:address_option] == "addresses" 
+    elsif params[:address_option] == "addresses"
       if params[:addresses].blank?
         render :new
         return
@@ -24,9 +24,10 @@ class Customer::OrdersController < ApplicationController
       @order.address = Address.find(params[:addresses]).address
       @order.name = Address.find(params[:addresses]).family_name + Address.find(params[:addresses]).first_name
     end
-    
+
     @order.payment = params[:payment_method]
-    
+    @order.shipfee = 800
+
   end
 
   def create
@@ -71,12 +72,12 @@ class Customer::OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order_status = @order.order_status
   end
-  
+
   private
     def address_params
       params.require(:order).permit(:zipcode, :address, :name)
     end
-    
+
     def order_params
       params.require(:order).permit(:customer_id, :name, :zipcode, :address, :payment, :shipfee, :order_status)
     end
