@@ -16,7 +16,7 @@
    <td><%= @item.explanation %></td>
    <td>￥<%= (@item.non_taxed_price*1.1).floor %>（税込み価格）</td>
 
-    <%= form_with model: @cart, url: carts_path,  local: true do |f| %>
+    <%= form_with model: @cart, url: carts_path, local: true do |f| %>
     <%= f.hidden_field :item_id, value: @item.id %>
     <%= f.select :quantity, (1..10).to_a,  class: "form-control product-show-form-control" %>
 		  <%= f.submit "カートに入れる" %>

@@ -1,6 +1,6 @@
 class Customer::CartsController < ApplicationController
   def index
-    @carts = Cart.all
+    @carts = current_customer.carts
     @total_price = 0
 		@carts.each do |cart|
 			@total_price += cart.item.non_taxed_price * cart.quantity
@@ -10,17 +10,15 @@ class Customer::CartsController < ApplicationController
   def create
     @cart = Cart.new(cart_params)
     @cart.customer_id = current_customer.id
-    @carts = Cart.all
-    @carts.each do |cart|
-    if cart.item_id == @cart.item_id
-      new_quantity = cart.quantity + @cart.quantity
-      cart.update_attribute(:quantity, new_quantity)
-      @cart.delete
+    # @carts = current_customer.carts
+    @already = current_customer.carts.find_by(item_id: @cart.item_id)
+    if @already.present?
+      new_quantity = @already.quantity + @cart.quantity
+      @already.update_attribute(:quantity, new_quantity)
+    else
+      @cart.save
     end
-    if @cart.save
     redirect_to carts_path
-    end
-  end
   end
 
   def update
