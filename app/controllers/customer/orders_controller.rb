@@ -15,13 +15,18 @@ class Customer::OrdersController < ApplicationController
       @order.name = current_customer.family_name + current_customer.first_name
 
     elsif params[:address_option] == "addresses" 
+      if params[:addresses].blank?
+        render :new
+        return
+        end
       #登録済住所から選択
-      @order.zipcode = Address.find(params[:select]).zipcode
-      @order.address = Address.find(params[:select]).address
-      @order.name = Address.find(params[:select]).family_name + Address.find(params[:select]).first_name
+      @order.zipcode = Address.find(params[:addresses]).zipcode
+      @order.address = Address.find(params[:addresses]).address
+      @order.name = Address.find(params[:addresses]).family_name + Address.find(params[:addresses]).first_name
     end
     
-    @order.payment = "クレジットカード"
+    @order.payment = params[:payment_method]
+    
   end
 
   def create
