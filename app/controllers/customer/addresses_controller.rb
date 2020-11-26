@@ -3,7 +3,7 @@ class Customer::AddressesController < ApplicationController
 before_action :authenticate_customer!
 
   def index
-    @addresses = current_customer.address
+    @addresses = current_customer.addresses
     @address = Address.new
   end
 

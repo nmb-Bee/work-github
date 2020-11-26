@@ -1,6 +1,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-10 col-xs-offset-1">
+			<% if @order.present? %>
 			<h2>注文履歴一覧</h2>
 			<div class="orders-table">
 				<table class="table">
@@ -15,17 +16,37 @@
 						</tr>
 					</thead>
 					<tbody class="order-items">
-						<% @orders.each do |order| %>
-			                <%= link_to admin_order_path(order) do %>
-			                  <%= order.created_at %>
-			                <% end %>
-			                <%= family_name(order.customer) %>
-			                <%= order.order_items.count %>
-			                <%= order.order_status %>
-			          <% end %>
+					  <tr>
+						 <% @order.each do |order| %>
+						 	<td><%= order.created_at %></td>
+						 	
+			                <td class="text-left">
+		    		          <%= order.zipcode %><br>
+		    		          <%= order.address %><br>
+		    		          <%= order.name %>
+		    		        </td>
+			               <td>
+			                <% order.order_items.each do |order_item| %>
+	    		          	<%= order_item.item.name %><br>
+		    		         <% end %>
+		    		        </td>
+		    		        <td class="text-right">
+		    		          <%= order.total_price.to_s(:delimited) %>円
+		    		        </td>
+		    		        <td>
+		    		          <%= order.order_status %>
+		    		        </td>
+		         	        <td>
+		       	              <%= link_to "注文詳細", order_path(order), class: "glyphicon glyphicon-zoom-in btn btn-success" %>
+		       	            </td>
+		              </tr>
+				          <% end %>
 					</tbody>
 				</table>
 			</div>
+			  <% else %>
+		        <p>注文履歴がありません。</p>
+		      <% end %>
 		</div>
 	</div>
 </div>
