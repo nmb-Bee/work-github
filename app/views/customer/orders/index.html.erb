@@ -15,7 +15,14 @@
 						</tr>
 					</thead>
 					<tbody class="order-items">
-
+						<% @orders.each do |order| %>
+			                <%= link_to admin_order_path(order) do %>
+			                  <%= order.created_at %>
+			                <% end %>
+			                <%= family_name(order.customer) %>
+			                <%= order.order_items.count %>
+			                <%= order.order_status %>
+			          <% end %>
 					</tbody>
 				</table>
 			</div>
