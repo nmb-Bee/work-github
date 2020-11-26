@@ -4,49 +4,85 @@
       <div class="Title">
         <h2><%= @customer.family_name %><%= @customer.first_name %>さんの会員情報編集</h2>
       </div>
-      <br>
-      <%= form_with model:@customer, url:admin_customer_path, local:true do |f| %>
-        <div class="customer col-xs-10">
-          <div class="form-group col-xs-12">
-            顧客ID    <%= @customer.id %>
-          </div>
-          <div class="form-group col-xs-12">
-            <%= f.label :"氏名" %>
-            <%= f.text_field :family_name, autofocus: true %>
-            <%= f.text_field :first_name %>
-          </div>
-          <div class="form-group col-xs-12">
-            <%= f.label :"フリガナ" %>
-            <%= f.text_field :family_name_kana %>
-            <%= f.text_field :first_name_kana %>
-          </div>
-          <div class="form-group col-xs-12">
-            <%= f.label :"メールアドレス" %>
-            <%= f.email_field :email %>
-          </div>
-          <div class="form-group col-xs-12">
-            <%= f.label :"郵便番号" %>
-            <%= f.text_field :zipcode %>
-          </div>
-          <div class="form-group col-xs-12">
-            <%= f.label :"住所" %>
-            <%= f.text_field :address %>
-          </div>
-          <div class="form-group col-xs-12">
-            <%= f.label :"電話番号" %>
-            <%= f.text_field :phone_number %>
-          </div>
-          <div class="form-group col-xs-12">
-            有効
-            <%= f.radio_button :is_deleted, :false %>
-            退会済み
-            <%= f.radio_button :is_deleted, :true %>
-          </div>
-          <div class="form-group col-xs-12">
-            <%= f.submit "変更を保存する", class: "col-xs-2 glyphicon btn-sm btn-primary" %>
-          </div>
-        </div>
-      <% end %>
     </div>
   </div>
+  <br>
+  <%= form_with model:@customer, url:admin_customer_path, local:true do |f| %>
+    <div class="row">
+      <div class="col-xs-10">
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <th class="info col-xs-2">顧客ID</th>
+              <td>
+                <%= @customer.id %>
+              </td>
+            </tr>
+            <tr>
+              <th class="info col-xs-2">
+                <%= f.label :"氏名" %>
+              </th>
+              <td>
+                <%= f.text_field :family_name, autofocus: true %>
+                <%= f.text_field :first_name %>
+              </td>
+            </tr>
+            <tr>
+              <th class="info col-xs-2">
+                <%= f.label :"フリガナ" %>
+              </th>
+              <td>
+                <%= f.text_field :family_name_kana %>
+                <%= f.text_field :first_name_kana %>
+              </td>
+            </tr>
+            <tr>
+              <th class="info col-xs-2">
+                <%= f.label :"メールアドレス" %>
+              </th>
+              <td>
+                <%= f.email_field :email, class: "col-xs-7 form-control-static email" %>
+              </td>
+            </tr>
+            <tr>
+              <th class="info col-xs-2">
+                <%= f.label :"郵便番号" %>
+              </th>
+              <td>
+                <%= f.text_field :zipcode %>
+              </td>
+            </tr>
+            <tr>
+              <th class="info col-xs-2">
+                <%= f.label :"住所" %>
+              </th>
+              <td>
+                <%= f.text_field :address, class: "col-xs-7 form-control-static address" %>
+              </td>
+            </tr>
+            <tr>
+            <th class="info col-xs-2">
+              <%= f.label :"電話番号" %>
+            </th>
+            <td>
+              <%= f.text_field :phone_number %>
+            </td>
+            </tr>
+            <tr>
+              <th class="info col-xs-2"></th>
+              <td>
+                有効
+                <%= f.radio_button :is_deleted, :false %>
+                退会済み
+                <%= f.radio_button :is_deleted, :true %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-group col-xs-12">
+      <%= f.submit "変更を保存する", class: "btn btn-primary" %>
+    </div>
+  <% end %>
 </div>

@@ -20,3 +20,6 @@ class Customer < ApplicationRecord
     return sum
   end
 end
+
+  has_many :addresses, dependent: :destroy
+end
