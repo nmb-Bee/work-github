@@ -21,6 +21,8 @@
 <td>￥<%= (item.non_taxed_price*1.1).floor %></td>
 </tr>
 <% end %>
+
+<%= paginate @items %>
 </div>
 </div>
 </div>
