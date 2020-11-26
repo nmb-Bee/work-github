@@ -43,17 +43,17 @@
           </tr>
           <tr>
             <th class="info">商品合計</th>
-            <td class="text-right">¥<%= @order.tax_price.to_s(:delimited) %></td>
+            <td class="text-right">¥<%= ((current_customer.total_price)*1.1).floor.to_s(:delimited) %></td>
           </tr>
           <tr>
             <th class="info">請求金額</th>
-            <td class="text-right">¥<%#= (@order).to_s(:delimited) %></td>
+            <td class="text-right">¥<%= ((current_customer.total_price)*1.1+@order.shipfee).floor.to_s(:delimited) %></td>
           </tr>
       </table>
     </div>
       <h2>支払方法</h2>
          <td class="text-left">
-            <%= @order.payment_method %>
+            <%= @order.payment %>
          </td>
       <h2>お届け先</h2>
         <div><%= @order.zipcode %>

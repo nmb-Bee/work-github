@@ -1,14 +1,24 @@
 class Customer::CartsController < ApplicationController
   def index
-    @carts = Cart.all
+    @carts = current_customer.carts
+    @total_price = 0
+		@carts.each do |cart|
+			@total_price += cart.item.non_taxed_price * cart.quantity
+		end
   end
 
   def create
     @cart = Cart.new(cart_params)
-    # @cart.customer_id = current_customer.id
-    if @cart.save
-    redirect_to carts_path
+    @cart.customer_id = current_customer.id
+    # @carts = current_customer.carts
+    @already = current_customer.carts.find_by(item_id: @cart.item_id)
+    if @already.present?
+      new_quantity = @already.quantity + @cart.quantity
+      @already.update_attribute(:quantity, new_quantity)
+    else
+      @cart.save
     end
+    redirect_to carts_path
   end
 
   def update
@@ -28,8 +38,7 @@ class Customer::CartsController < ApplicationController
   end
 
   def all_destroy
-    # @carts = current_customer.cart
-    @carts.destroy_all
+    Cart.destroy_all
     redirect_to carts_path
   end
 
@@ -38,5 +47,4 @@ class Customer::CartsController < ApplicationController
   def cart_params
     params.require(:cart).permit(:item_id, :quantity)
   end
-
 end

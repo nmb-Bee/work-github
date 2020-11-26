@@ -1,39 +1,42 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-12">
+    <div class="col-xs-10 col-xs-offset-1">
       <div class="title">
         <h2>注文履歴一覧</h2>
       </div>
-      <table border="1">
-        <thead>
-          <tr bgcolor="#dcdcdc">
-            <th width="20%">購入日時</th>
-            <th width="20%">購入者</th>
-            <th width="20%">注文個数</th>
-            <th width="30%">注文ステータス</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @orders.each do |order| %>
-            <tr>
-              <tb width="20%">
-                <%= link_to admin_order_path(order) do %>
-                  <%= order.created_at %>
-                <% end %>
-              </tb>
-              <tb width="20%">
-                <%= family_name(order.customer) %>
-              </tb>
-              <tb width="20%">
-                <%= order.order_items.count %>
-              </tb>
-              <tb width="30%">
-                <%= order.order_status %>
-              </tb>
+      <br>
+      <div class="orders-table">
+        <table class="table">
+          <thead>
+            <tr class="active">
+              <th>購入日時</th>
+              <th>購入者</th>
+              <th>注文個数</th>
+              <th>注文ステータス</th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
+          </thead>
+          <tbody　 class="order">
+            <% @orders.each do |order| %>
+              <tr>
+                <tb>
+                  <%= link_to admin_order_path(order) do %>
+                    <%= order.created_at %>
+                  <% end %>
+                </tb>
+                <tb>
+                  <%= family_name(order.customer) %>
+                </tb>
+                <tb>
+                  <%= order.order_items.quantity %>
+                </tb>
+                <tb>
+                  <%= order.order_status %>
+                </tb>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>

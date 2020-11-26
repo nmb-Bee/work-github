@@ -4,9 +4,6 @@ class Customer::ItemsController < ApplicationController
   def top
     @genres = Genre.all
     @items =Item.limit(8).offset(4)
-    # @item = Item.find(params[:id])
-    # @items = Item.in_taxons(@item.taxons)
-    # distinct.where.not(id: @item.id).sample(MAX_DISPLAY_RELATED_PRODUCTS)
   end
 
   def about
@@ -24,11 +21,8 @@ class Customer::ItemsController < ApplicationController
     @cart = Cart.new
   end
 
-
   private
   def items_params
     params.require(:item).permit(:explanation, :non_taxed_price, :image, :on_sale, :genre_id)
   end
-
-
 end
