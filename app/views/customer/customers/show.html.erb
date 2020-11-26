@@ -1,16 +1,21 @@
 <div class="container">
-    <div class="row">
-      <div class="col-xs-6">
-        <h3 class="mypage-logo text-center">マイページ</h3>
-        <strong class="mypage-link">登録情報</strong>
+  <div class="row">
+    <div class="title">
+      <h2>マイページ</h>
+    </div>
+    <br>
+    <div class="col-xs-10">
+      <strong class="mypage-link">登録情報</strong>
         <%= link_to '編集する', edit_customers_path, class: "btn btn-primary mypage-btn" %>
         <%= link_to 'パスワードを変更する', edit_customer_registration_path, class: "btn btn-primary mypage-btn" %>
-        <table class="table table-bordered">
-          <tbody>
-            <tr>
-              <th class="info col-xs-2">氏名</th>
-              <td><%= @customer.family_name %><%= @customer.first_name %></td>
-            </tr>
+      <br>
+      <br>
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <th class="info col-xs-2">氏名</th>
+            <td><%= @customer.family_name %><%= @customer.first_name %></td>
+          </tr>
           <tr>
           <th class="info col-xs-2">カナ</th>
             <td>
@@ -43,15 +48,15 @@
             </td>
           </tr>
         </tbody>
-        </table>
-        <p>
-          <strong>配送先</strong>
+      </table>
+      <p>
+        <strong>配送先</strong>
           <%= link_to '一覧を見る', addresses_path, class: "btn btn-primary" %>
-        </p>
-        <p>
-          <strong>注文履歴</strong>
+      </p>
+      <p>
+        <strong>注文履歴</strong>
           <%= link_to '一覧を見る', orders_path, class: "btn btn-primary" %>
-        </p>
-      </div>
+      </p>
     </div>
   </div>
+</div>
