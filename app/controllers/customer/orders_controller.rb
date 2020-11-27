@@ -19,14 +19,14 @@ class Customer::OrdersController < ApplicationController
         render :new
         return
       end
-      #登録済住所から選択
-      @order.zipcode = Address.find(params[:addresses]).zipcode
-      @order.address = Address.find(params[:addresses]).address
-      @order.name = Address.find(params[:addresses]).name
-    else params[:address_option] == "new_address"
-      @order.zipcode = params[:zipcode]
-      @order.address = params[:address]
-      @order.name = params[:name]
+        #登録済住所から選択
+        @order.zipcode = Address.find(params[:addresses]).zipcode
+        @order.address = Address.find(params[:addresses]).address
+        @order.name = Address.find(params[:addresses]).name
+      else params[:address_option] == "new_address"
+        @order.zipcode = params[:zipcode]
+        @order.address = params[:address]
+        @order.name = params[:name]
     end
 
     @order.payment = params[:payment_method]
@@ -37,6 +37,7 @@ class Customer::OrdersController < ApplicationController
 #チェック
   def create
     @order = Order.new(order_params)
+    @order.save!
     # もし情報入力でnew_addressの場合Addressに保存
     if params[:address_option] == "new_address"
       current_customer.addresses.create(address_params)
@@ -55,9 +56,8 @@ class Customer::OrdersController < ApplicationController
     end
 
     # 注文完了後、カート商品を空にする
-   @carts.destroy_all
+  # @carts.destroy_all
     if @order.save
-
       @carts = current_customer.carts
       @carts.destroy_all
       redirect_to thanks_orders_path
@@ -72,8 +72,7 @@ class Customer::OrdersController < ApplicationController
   end
 
   def index
-      @order = Order.where(customer_id: current_customer.id).order(created_at: :desc)
-
+      @orders = Order.where(customer_id: current_customer.id).order(created_at: :desc)
   end
 
   def show
@@ -87,6 +86,6 @@ class Customer::OrdersController < ApplicationController
     end
 
     def order_params
-      params.require(:order).permit(:customer_id, :name, :zipcode, :address, :payment, :shipfee, :order_status)
+      params.require(:order).permit( :name, :zipcode, :address, :payment, :shipfee, :order_status)
     end
 end
