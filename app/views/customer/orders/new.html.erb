@@ -1,7 +1,9 @@
 <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <h2>注文情報入力</h2>
+         <div class="title">
+            <h2>注文情報入力</h2>
+         </div>
         
         <%= form_with url:log_orders_path, method: :get, local: true do | f | %>
            <h4><strong>支払方法</strong></h4>
@@ -40,7 +42,10 @@
                       <%= f.text_field :name, class: "col-sm-4 form-control-static" %>
                     </div>
                   </div>
-               </p>
+                </p>
               <%= f.submit "確認画面に進む"%>
               
          <% end %>
+      </div>
+    </div>
+</div>
