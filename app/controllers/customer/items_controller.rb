@@ -2,7 +2,7 @@ class Customer::ItemsController < ApplicationController
   MAX_DISPLAY_RELATED_PRODUCTS = 4
 
   def top
-    @genres = Genre.all
+     @genres = Genre.where(directed_graph: true)
     @items =Item.limit(8).offset(4)
   end
 

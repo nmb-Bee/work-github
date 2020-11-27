@@ -1,7 +1,8 @@
 <div class="page-header">
   <div class="container">
-      <span><%= link_to "Logo", root_path %> </span>
+      <span class="logo-image"><%= link_to image_tag("naganocake.jpg", style: "width: 200px; height: 100px;"), root_path %> </span>
        <ul class="nav navbar-nav navbar-right">
+
         <% if customer_signed_in? %>
         <!--顧客がログインしている場合-->
 
