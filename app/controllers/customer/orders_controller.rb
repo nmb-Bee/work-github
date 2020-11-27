@@ -22,7 +22,11 @@ class Customer::OrdersController < ApplicationController
       #登録済住所から選択
       @order.zipcode = Address.find(params[:addresses]).zipcode
       @order.address = Address.find(params[:addresses]).address
-      @order.name = Address.find(params[:addresses]).family_name + Address.find(params[:addresses]).first_name
+      @order.name = Address.find(params[:addresses]).name
+    else params[:address_option] == "new_address"
+      @order.zipcode = params[:zipcode]
+      @order.address = params[:address]
+      @order.name = params[:name]
     end
 
     @order.payment = params[:payment_method]
@@ -30,11 +34,12 @@ class Customer::OrdersController < ApplicationController
 
   end
 
+#チェック
   def create
     @order = Order.new(order_params)
     # もし情報入力でnew_addressの場合Addressに保存
-    if params[:order][:address] == "new_address"
-      current_customer.address.create(address_params)
+    if params[:address_option] == "new_address"
+      current_customer.addresses.create(address_params)
     end
 
     # カート商品の情報を注文商品に移動
@@ -50,7 +55,7 @@ class Customer::OrdersController < ApplicationController
     end
 
     # 注文完了後、カート商品を空にする
-    @carts.destroy_all
+   @carts.destroy_all
     if @order.save
 
       @carts = current_customer.carts
