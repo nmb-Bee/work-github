@@ -5,7 +5,7 @@
 	          <h2>注文履歴一覧</h2>
 	        </div>
 			<% if @order.present? %>
-			
+
 			<div class="orders-table">
 				<table class="table">
 					<thead>
@@ -20,9 +20,9 @@
 					</thead>
 					<tbody class="order-items">
 					  <tr>
-						 <% @order.each do |order| %>
+						 <% @orders.each do |order| %>
 						 	<td><%= order.created_at %></td>
-						 	
+
 			                <td class="text-left">
 		    		          <%= order.zipcode %><br>
 		    		          <%= order.address %><br>

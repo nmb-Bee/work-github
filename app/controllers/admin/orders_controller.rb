@@ -1,10 +1,9 @@
 class Admin::OrdersController < ApplicationController
-  
+
   before_action :authenticate_admin!
 
   def index
     @orders = Order.all.page(params[:id]).per(10)
-    byebug
   end
 
   def show
@@ -23,7 +22,7 @@ class Admin::OrdersController < ApplicationController
 
   private
   def order_params
-      params.require(:order).permit(:order_status)
+    params.require(:order).permit(:order_status)
   end
 
 end
