@@ -76,6 +76,8 @@
         <%= f.hidden_field :name %>
         <%= f.hidden_field :payment %>
         <%= f.hidden_field :total_price %>
+        <%= f.hidden_field :shipfee %>
+        <%= f.hidden_field :order_status, :value => "入金待ち" %>
         <%= f.submit "購入を確定する", class: "btn-lg btn-success col-xs-offset-5" %>
       <% end %>
     </div>
