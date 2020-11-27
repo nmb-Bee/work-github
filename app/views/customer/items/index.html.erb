@@ -1,14 +1,17 @@
 <div class="container">
   <div class="row">
 
+<div class="genreback">
 <div class="col-xs-4">
-<h3>ジャンル検索</h3>
+
+<h3 class="genresearch">ジャンル検索</h3>
 <% @genres.each do |genre| %>
 <table>
   <!--有効のみ表示したい-->
   <td><%= link_to genre.name %></td></br>
 </table>
 <% end %>
+</div>
 </div>
 
 

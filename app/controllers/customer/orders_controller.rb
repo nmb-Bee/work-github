@@ -8,7 +8,7 @@ class Customer::OrdersController < ApplicationController
     @carts = Cart.all
 		@order = Order.new
 
-		if params[:address_option] == "address"
+	  if params[:address_option] == "address"
       #ご自身の住所
       @order.zipcode = current_customer.zipcode
       @order.address = current_customer.address
@@ -18,7 +18,7 @@ class Customer::OrdersController < ApplicationController
       if params[:addresses].blank?
         render :new
         return
-        end
+      end
       #登録済住所から選択
       @order.zipcode = Address.find(params[:addresses]).zipcode
       @order.address = Address.find(params[:addresses]).address
@@ -38,18 +38,21 @@ class Customer::OrdersController < ApplicationController
     end
 
     # カート商品の情報を注文商品に移動
-    @carts = current_cart
+    @carts = current_customer.carts
     @carts.each do |cart|
-    OrderDetail.create(
-      product:  cart.items,
-      order:    @order,
-      quantity: cart.quantity,
-      subprice: sub_price(cart)
-    )
+    # OrderItem.create(purchase_price: cart.item.non_taxed_price, order_id: @order.id, item_id: cart.item.id, quantity: cart.quantity)
+    @order_item = OrderItem.new
+    @order_item.purchase_price = cart.item.non_taxed_price
+    @order_item.order_id = @order.id
+    @order_item.item_id  = cart.item.id
+    @order_item.quantity = cart.quantity
+    @order_item.save
     end
+
     # 注文完了後、カート商品を空にする
     @carts.destroy_all
     if @order.save
+
       @carts = current_customer.carts
       @carts.destroy_all
       redirect_to thanks_orders_path

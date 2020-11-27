@@ -4,6 +4,7 @@ class Admin::OrdersController < ApplicationController
 
   def index
     @orders = Order.all.page(params[:id]).per(10)
+    byebug
   end
 
   def show
