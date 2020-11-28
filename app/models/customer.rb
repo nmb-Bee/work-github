@@ -19,5 +19,5 @@ class Customer < ApplicationRecord
     end
     return sum
   end
-  
+
 end

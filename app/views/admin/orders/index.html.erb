@@ -28,6 +28,11 @@
                 <%= order.name %>
               </td>
                 <td>
+                <% sum = 0 %>
+                <% order.order_items.each do |item| %>
+                  <% sum += item.quantity %>
+                <% end %>
+                <%= sum %>
                   <%#= order. %>
                 </td>
               <td>
