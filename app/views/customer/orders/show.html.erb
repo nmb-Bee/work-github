@@ -14,14 +14,14 @@
 							<tbody>
 								<tr>
 									<th class="active">注文日</th>
-									<td><%= @order.created_at %></td>
+									<td><%= @order.created_at.strftime("%Y-%m-%d %H:%M:%S") %> %></td>
 								</tr>
 								<tr>
 									<th class="active">配送先</th>
 									<td>
-									  <%= current_customer.zipcode %><br>
-									  <%= current_customer.address %><br>
-				    		    <%= current_customer.family_name %><%= current_customer.first_name %>
+									  <%= @order.zipcode %><br>
+									  <%= @order.address %><br>
+				    		    	  <%= @order.name %>
 									</td>
 								</tr>
 								<tr>

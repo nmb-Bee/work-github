@@ -5,10 +5,6 @@
         <h2>注文履歴一覧</h2>
       </div>
       <br>
-<<<<<<< HEAD
-      <% if @orders.present? %>
-
-=======
       <div class="orders-table">
         <table class="table">
           <thead>
@@ -19,52 +15,28 @@
               <th>注文ステータス</th>
             </tr>
           </thead>
-          <tbody class="order">
+          <tbody　 class="order">
             <% @orders.each do |order| %>
               <tr>
-                <td>
+                <tb>
                   <%= link_to admin_order_path(order) do %>
-                    <%= order.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+                    <%= order.created_at %>
                   <% end %>
-                </td>
-                <td>
-                  <%#= name(order.customer) %>
-                  <%= order.name %>
-                </td>
-                <td>
-                  <%#= order. %>
-                </td>
-                <td>
+                </tb>
+                <tb>
+                  <%= family_name(order.customer) %>
+                </tb>
+                <tb>
+                  <%= order.order_items.quantity %>
+                </tb>
+                <tb>
                   <%= order.order_status %>
-                </td>
->>>>>>> origin/develop
+                </tb>
               </tr>
-            </thead>
-            <tbody　 class="order">
-              <% @orders.each do |order| %>
-                <tr>
-                  <tb>
-                    <%= link_to admin_order_path(order) do %>
-                      <%= order.created_at %>
-                    <% end %>
-                  </tb>
-                  <tb>
-                    <%= family_name(order.customer) %>
-                  </tb>
-                  <tb>
-                    <%= order.order_items.quantity %>
-                  </tb>
-                  <tb>
-                    <%= order.order_status %>
-                  </tb>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
-      <% else %>
-		    <p>注文履歴がありません。</p>
-		  <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
