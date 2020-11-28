@@ -8,7 +8,7 @@ class Order < ApplicationRecord
   def sub_price
     sum = 0
     self.order_items.each do |order_item|
-      sum += order_item.purchase_price
+      sum += order_item.purchase_price*order_item.quantity
     end
     return sum
   end
