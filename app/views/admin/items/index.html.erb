@@ -1,28 +1,35 @@
-<h1>商品一覧</h1>
-<%= link_to "商品追加", new_admin_item_path, class: "btn btn-lg rounded-circle text-right ml-auto shadow-sm" %>
+<div class= "container">
+  <div class= "row">
+    <div class="title">
+      <h2>商品一覧</h2>
+    </div>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>商品ID</th>
-      <th>商品名</th>
-      <th>税抜き価格</th>
-      <th>ジャンル</th>
-      <th>ステータス</th>
-    </tr>
-  </thead>
+    <%= link_to "商品追加", new_admin_item_path, class: "btn btn-lg rounded-circle text-right ml-auto shadow-sm" %>
 
-  <!--複数のモデルの繰り返しデータ　　→　　コントローラーに変数を記載-->
-  <% @items. each do |item| %>
-  <tr>
-    <td><%= item.id %></td>
-    <td><%= link_to item.name, admin_item_path(item) %></td>
-    <!--消費税の考え方-->
-    <td><%= item.non_taxed_price %></td>
-    <td><%= item.genre.name %></td>
-    <td><%= item.on_sale %></td>
-  </tr>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>商品ID</th>
+          <th>商品名</th>
+          <th>税抜き価格</th>
+          <th>ジャンル</th>
+          <th>ステータス</th>
+        </tr>
+      </thead>
+      <!--複数のモデルの繰り返しデータ　　→　　コントローラーに変数を記載-->
+      <% @items. each do |item| %>
+        <tr>
+          <td><%= item.id %></td>
+          <td><%= link_to item.name, admin_item_path(item) %></td>
+          <!--消費税の考え方-->
+          <td><%= item.non_taxed_price %></td>
+          <td><%= item.genre.name %></td>
+          <td><%= item.on_sale %></td>
+        </tr>
+      <% end %>
 
-  <% end %>
-  <%= paginate @items %>
-</table>
+      <%= paginate @items %>
+
+    </table>
+  </div>
+</div>

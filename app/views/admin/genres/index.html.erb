@@ -1,33 +1,42 @@
-<h1>ジャンル一覧・追加</h1>
-<%= form_with model: @genre, url: admin_genres_path, local: true do |f| %>
-    <%= f.label "ジャンル" %>
-    <%= f.text_field :name %>
+<div class="container">
+  <div class="row">
+		<div class="order-show col-xs-10 col-xs-offset-1">
+      <div class="title">
+        <h3>ジャンル一覧・追加</h3>
+      </div>
+      <br>
+        <%= form_with model: @genre, url: admin_genres_path, local: true do |f| %>
+          <%= f.label "ジャンル" %>
+          <%= f.text_field :name %>
+          <%= f.radio_button :directed_graph, :true,checked: true %>
+          <%= f.label :directed_graph, "有効", {value: :true} %>
+          <%= f.radio_button :directed_graph, :false,checked: false %>
+          <%= f.label :directed_graph, "無効", {value: :false} %>
+          <%= f.submit "追加"%>
+        <% end %>
+    </div>
+  </div>
+  <br>
+  <br>
+  <div class="row">
+    <table class ="table">
+      <thead>
+        <tr>
+          <th>ジャンル</th>
+          <th>状態</th>
+        </tr>
+      </thead>
 
-  <%= f.radio_button :directed_graph, :true,checked: true %>
-  <%= f.label :directed_graph, "有効", {value: :true} %>
-  <%= f.radio_button :directed_graph, :false,checked: false %>
-  <%= f.label :directed_graph, "無効", {value: :false} %>
-  <%= f.submit "追加"%>
-<% end %>
-
-<table class ="table">
-  <thead>
-    <tr>
-      <th>ジャンル</th>
-      <th>状態</th>
-    </tr>
-  </thead>
-
-
-<% @genres. each do |genre| %>
-<tbody>
-<tr>
-<td><%= genre.name %></td>
-<td><%= genre.status %></td>
-<td><%= link_to "編集する", edit_admin_genre_path(genre.id), class: "glyphicon btn-sm btn-primary" %></td>
-<!--<td><%#= link_to "Destroy", admin_genre_path(genre), method: :delete %></td>-->
-</tr>
-</tbody>
-
-<% end %>
-</table>
+      <% @genres. each do |genre| %>
+        <tbody>
+          <tr>
+            <td><%= genre.name %></td>
+            <td><%= genre.status %></td>
+            <td><%= link_to "編集する", edit_admin_genre_path(genre.id), class: "glyphicon btn-sm btn-primary" %></td>
+            <!--<td><%#= link_to "Destroy", admin_genre_path(genre), method: :delete %></td>-->
+          </tr>
+        </tbody>
+      <% end %>
+    </table>
+  </div>
+</div>

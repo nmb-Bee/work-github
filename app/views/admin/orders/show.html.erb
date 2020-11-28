@@ -8,32 +8,34 @@
       <div class=" order-info col-xs-7">
         <div class="col-xs-4">購入者</div>
         <div class="col-xs-8">
-          <%= @order.family_name %>
+          <%= family_name(@order) %><%= first_name(@order) %>
         </div>
       </div>
       <div class="field">
         <div class="col-xs-4">配送先</div>
         <div class="col-xs-8">
-          <%= zipcode(@order), address(@order), name(@order) %>
+          <%= zipcode(@order) %><br>
+					<%= address(@order) %><br>
+				  <%= family_name(@order) %><%= first_name(@order) %>
         </div>
       </div>
       <div class="field">
         <div class="col-xs-8">支払い方法</div>
         <div class="col-xs-8">
-          <%= @order.payment_method %>
+          <%= @order.payment %>
         </div>
       </div>
       <%= form_with(@order, url:admin_order_path, method: :patch, local: true ) do |f| %>
           <div class="col-xs-4">注文ステータス</div>
           <div class="col-xs-6">
-            <%= f.select order_status, oder.order_status %>
+            <%= f.select order_status, order.order_status %>
             <%= f.submit '更新', class: "btn btn-primary" %>
           </div>
       <% end %>
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-12">
+    <div class=" order-info col-xs-7">
       <table border="1">
         <thead>
           <tr bgcolor="#dcdcdc">
@@ -47,10 +49,10 @@
         <tbody>
           <% @order_items.each do |order_item| %>
             <tr>
-              <td width="30%"><%= order_item.item.name %></td>
-              <td width="10%">¥<%= tax_price(order_item.product.non_taxed_price).floor %></td>
-              <td width="10%"><%= order_item.quantity %></td>
-              <tb width="10%">¥<%= (sub_price(order_item)*1.1).floor %></tb>
+              <td><%= order_item.item.name %></td>
+              <td>¥<%= tax_price(order_item.product.non_taxed_price).floor.to_s(:delimited) %></td>
+              <td><%= order_item.quantity %></td>
+              <tb>¥<%= (sub_price(order_item)*1.1).floor.to_s(:delimited) %></tb>
                 <%= form_with(order_item, url: admin_order_item_path),local: true, method: :patch) do |f| %>
                   <tb width="40%"><%= f.submit '更新' %></tb>
                 <% end %>
@@ -64,15 +66,15 @@
 		<table>
 			<tr>
         <th>商品合計</th>
-				<td>¥<%= total_price(@order_items).floor %></td>
+				<td>¥<%= total_price(@order_items).floor.to_s(:delimited) %></td>
 			</tr>
 			<tr>
 				<th>送料</th>
-				<td>¥<%= @order.postage.floor %></td>
+				<td>¥<%= @order.shipfee %></td>
 			</tr>
 			<tr>
 				<th>請求金額合計</th>
-				<td>¥<%= @order.total_price.floor %></td>
+				<td>¥<%= @order.total_price.floor.to_s(:delimited) %></td>
 			</tr>
 		</table>
 	</div>

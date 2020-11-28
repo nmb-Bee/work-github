@@ -5,6 +5,10 @@
         <h2>注文履歴一覧</h2>
       </div>
       <br>
+<<<<<<< HEAD
+      <% if @orders.present? %>
+
+=======
       <div class="orders-table">
         <table class="table">
           <thead>
@@ -33,11 +37,34 @@
                 <td>
                   <%= order.order_status %>
                 </td>
+>>>>>>> origin/develop
               </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody　 class="order">
+              <% @orders.each do |order| %>
+                <tr>
+                  <tb>
+                    <%= link_to admin_order_path(order) do %>
+                      <%= order.created_at %>
+                    <% end %>
+                  </tb>
+                  <tb>
+                    <%= family_name(order.customer) %>
+                  </tb>
+                  <tb>
+                    <%= order.order_items.quantity %>
+                  </tb>
+                  <tb>
+                    <%= order.order_status %>
+                  </tb>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      <% else %>
+		    <p>注文履歴がありません。</p>
+		  <% end %>
     </div>
   </div>
 </div>
