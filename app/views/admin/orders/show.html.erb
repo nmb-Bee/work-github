@@ -1,89 +1,94 @@
 <div class="container">
   <div class="row">
-		<div class="order-show col-xs-10 col-xs-offset-1">
-      <div class="title">
-        <h2>注文履歴詳細</h2>
-      </div>
-
-      <div class="row">
-          <div class=" order-info col-xs-7">
-            <div class="field">
-              <div>購入者</div>
-              <div>
-                <%= @order.name %>
-              </div>
-            </div>
+    <div class="title">
+      <h2>注文履歴詳細</h2>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-xs-12" >
+		      <div class="field">
+		        <div class="col-xs-4">購入者</div>
+		        <div class="col-xs-8"><%= @order.name %></div>
           </div>
+          <br>
           <div class="field">
-            <div>配送先</div>
-            <div>
-              <%= @order.zipcode %><br>
+	          <div class="col-xs-4">配送先</div>
+	          <div class="col-xs-8">
+	            <%= @order.zipcode %>
     					<%= @order.address %><br>
     				  <%= @order.name %>
             </div>
           </div>
+          <br>
+          <br>
           <div class="field">
-            <div>支払い方法</div>
-            <div>
+	          <div class="col-xs-4">支払い方法</div>
+            <div  class="col-xs-8">
               <%= @order.payment %>
             </div>
           </div>
+          <br>
+          <div class="field">
           <%= form_with( model: @order, url: admin_order_path, method: :patch, local: true ) do |f| %>
-              <div>注文ステータス</div>
-              <div>
-                <%= f.select :order_status, Order.order_statuses.keys, class: "order_status" %>
-                <%= f.submit '更新', class: "btn btn-primary" %>
-              </div>
+            <div class="col-xs-4">注文ステータス</div>
+            <div class="col-xs-8">
+              <%= f.select :order_status, Order.order_statuses.keys, class: "order_status" %>
+              <%= f.submit '更新', class: "btn btn-primary" %>
+            </div>
+            <br>
           <% end %>
       </div>
-
-      <div class="row">
-        <div class=" order-info col-xs-7">
-          <table class="table">
-            <thead>
-              <tr>
-                <th class="active">商品名</th>
-                <th class="active">単価（税込）</th>
-                <th class="active">数量</th>
-                <th class="active">小計</th>
-                <th class="active">制作ステータス</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @order_items.each do |order_item| %>
-                <tr>
-                  <td><%= order_item.item.name %></td>
-                  <td>¥<%= (order_item.purchase_price*1.1).floor.to_s(:delimited) %></td>
-                  <td><%= order_item.quantity %></td>
-                  <td>¥<%= (order_item.purchase_price*1.10*order_item.quantity).floor.to_s(:delimited) %></td>
-                    <%= form_with( model: order_item, url: admin_order_item_path(order_item), local: true, method: :patch) do |f| %>
-                      <td>
-                        <%= f.select :making_status, OrderItem.making_statuses.keys, class: "making_status" %>
-			            	    <%= f.submit '更新' ,class: "btn btn-warning" %></td>
-                    <% end %>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="col-xs-3">
-    		<table  class="table">
-    			<tr>
-            <th class="active">商品合計</th>
-    				<td class="text-right">¥<%= (@order.sub_price*1.1).floor.to_s(:delimited) %></td>
-    			</tr>
-    			<tr>
-    				<th class="active">送料</th>
-    				<td class="text-right">¥<%= @order.shipfee %></td>
-    			</tr>
-    			<tr>
-    				<th class="active">請求金額合計</th>
-    				<td class="text-right">¥<%= @order.total_price.floor.to_s(:delimited) %></td>
-    			</tr>
-    		</table>
-    	</div>
     </div>
   </div>
+    <br>
+    <br>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class=" order-info col-xs-7">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th class="active">商品名</th>
+                  <th class="active">単価（税込）</th>
+                  <th class="active">数量</th>
+                  <th class="active">小計</th>
+                  <th class="active">制作ステータス</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @order_items.each do |order_item| %>
+                  <tr>
+                    <td><%= order_item.item.name %></td>
+                    <td>¥<%= (order_item.purchase_price*1.1).floor.to_s(:delimited) %></td>
+                    <td><%= order_item.quantity %></td>
+                    <td>¥<%= (order_item.purchase_price*1.10*order_item.quantity).floor.to_s(:delimited) %></td>
+                      <%= form_with( model: order_item, url: admin_order_item_path(order_item), local: true, method: :patch) do |f| %>
+                        <td>
+                          <%= f.select :making_status, OrderItem.making_statuses.keys, class: "making_status" %>
+  			            	    <%= f.submit '更新' ,class: "btn btn-warning" %></td>
+                      <% end %>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-xs-3">
+        		<table  class="table">
+        			<tr>
+                <th class="active">商品合計</th>
+        				<td class="text-right">¥<%= (@order.sub_price*1.1).floor.to_s(:delimited) %></td>
+        			</tr>
+        			<tr>
+        				<th class="active">送料</th>
+        				<td class="text-right">¥<%= @order.shipfee %></td>
+        			</tr>
+        			<tr>
+        				<th class="active">請求金額合計</th>
+        				<td class="text-right">¥<%= @order.total_price.floor.to_s(:delimited) %></td>
+        			</tr>
+        		</table>
+    	    </div>
+        </div>
+      </div>
+    </div>
 </div>
