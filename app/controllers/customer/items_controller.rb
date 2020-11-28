@@ -4,7 +4,7 @@ class Customer::ItemsController < ApplicationController
   def top
     @genres = Genre.where(directed_graph: true)
     # @items =Item.limit(8).offset(4)
-    @items = Item.all
+    @items = Item.where(on_sale: true)
   end
 
   def about
@@ -12,7 +12,7 @@ class Customer::ItemsController < ApplicationController
 
   def index
     @genres = Genre.where(directed_graph: true)
-    @items = Item.page(params[:page]).per(4)
+    @items = Item.where(on_sale: true).page(params[:page]).per(4)
 
   end
 
