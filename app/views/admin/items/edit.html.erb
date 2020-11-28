@@ -34,7 +34,8 @@
         <div class="field">
           <label class="control-label sr-only">販売ステータス</label>
           <%= f.label :販売ステータス %>
-          <%= f.select :on_sale, ["販売中", "販売停止"]%>
+          <%# byebug %>
+          <%= f.select :on_sale, [["販売中",true], ["販売停止",false]] %>
         </div>
         <br>
         <div class="actions">

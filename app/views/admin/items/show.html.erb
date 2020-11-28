@@ -4,14 +4,12 @@
       <h2>商品詳細</h2>
     </div>
     <div class="col-xs-4">
-    　 <div class="field row">
     　   <div class="itemimage">商品画像</div>
-    　  <%= attachment_image_tag(@item, :image, :fill, 500, 250, fallback: "no_image.jpg") %>
+    　  <%= attachment_image_tag(@item, :image, :fill,300, 200, fallback: "no_image.jpg") %>
     　 </div>
-  　</div>
+
 
     <div class="col-xs-8">
-      <div class="field row">
         <div class="itemname">商品名: <%= @item.name %></div>
         <br>
         <div class="itemexplanation">商品説明: <%= @item.explanation %></div>
@@ -20,11 +18,12 @@
         <br>
         <div class="itemprice">税込価格（税抜価格）: <%= (@item.non_taxed_price*1.1).floor %> (<%= @item.non_taxed_price %>)　円 </div>
         <br>
-        <div class="itemsale">販売ステータス: <%= @item.on_sale %> </div>
+        <%# byebug %>
+        <div class="itemsale">販売ステータス: <%= @item.on_sale == true ? "販売中" : "販売停止" %> </div>
         <br>
           <%= link_to "編集する", edit_admin_item_path(@item.id), class: "btn btn-primary " %>
-      </div>
+
+     </div>
     </div>
   </div>
-</div>
 
