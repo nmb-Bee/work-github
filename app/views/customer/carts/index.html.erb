@@ -6,7 +6,7 @@
     <%= button_to "カートを空にする", all_destroy_carts_path, method: :delete , class: "btn btn-sm btn-danger col-xs-2 col-xs-offset-10" %>
     <br>
     <table class="table table-bordered table-condensed">
-      <thead  bgcolor="#cccccc">
+      <thead>
         <tr>
           <th class="col-xs-4">商品名</th>
           <th class="col-xs-2">単価(税込)</th>
@@ -19,7 +19,7 @@
         <% @carts.each do |cart| %>
         <tr>
           <td>
-            <%= attachment_image_tag(cart.item, :image, :fill,50, 50, fallback: "no_image.jpg") %>
+            <%= attachment_image_tag(cart.item, :image, :fill,500, 250, fallback: "no_image.jpg") %>
             <%= cart.item.name %>
           </td>
           <td>¥<%= tax_price(cart.item.non_taxed_price).floor %></td>
@@ -40,7 +40,7 @@
     <div class="col-xs-offset-10">
       <table class="table table-bordered">
         <tr>
-          <th  bgcolor="#cccccc">合計金額</th>
+          <th>合計金額</th>
           <td>¥<%= (@total_price * 1.1).floor.to_s(:delimited) %></td>
         </tr>
   		</table>
