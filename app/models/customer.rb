@@ -11,6 +11,7 @@ class Customer < ApplicationRecord
   end
 
   has_many :addresses, dependent: :destroy
+  has_many :orders
 
   def total_price
     sum = 0
