@@ -3,7 +3,8 @@ class Customer::ItemsController < ApplicationController
 
   def top
     @genres = Genre.where(directed_graph: true)
-    @items =Item.limit(8).offset(4)
+    # @items =Item.limit(8).offset(4)
+    @items = Item.all
   end
 
   def about
