@@ -34,7 +34,7 @@
 		    		         <% end %>
 		    		        </td>
 		    		        <td class="text-right">
-		    		          <%= ((current_customer.total_price)*1.1+@order.shipfee).floor.to_s(:delimited) %>円
+		    		          <%= order.total_price.floor.to_s(:delimited) %>円
 		    		        </td>
 		    		        <td>
 		    		          <%= order.order_status %>
