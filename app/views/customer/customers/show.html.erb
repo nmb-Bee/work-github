@@ -4,8 +4,8 @@
       <h2>マイページ</h>
     </div>
     <br>
-    <div class="col-xs-10">
-      <strong class="mypage-link">登録情報</strong>
+    <div class="col-xs-6">
+      <strong class="mypage-header">登録情報</strong>
         <%= link_to '編集する', edit_customers_path, class: "btn btn-primary mypage-btn" %>
         <%= link_to 'パスワードを変更する', edit_customer_registration_path, class: "btn btn-primary mypage-btn" %>
       <br>
@@ -13,36 +13,36 @@
       <table class="table table-bordered">
         <tbody>
           <tr>
-            <th class="col-xs-2">氏名</th>
-            <td ><%= @customer.family_name %><%= @customer.first_name %></td>
+            <th class="col-xs-1" bgcolor="#cccccc">氏名</th>
+            <td class="col-xs-5"><%= @customer.family_name %><%= @customer.first_name %></td>
           </tr>
           <tr>
-          <th class="col-xs-2">カナ</th>
+          <th class="col-xs-2" bgcolor="#cccccc">カナ</th>
             <td>
               <%= @customer.family_name_kana %>
               <%= @customer.first_name_kana %>
             </td>
           </tr>
           <tr>
-            <th class="col-xs-2">郵便番号</th>
+            <th class="col-xs-2" bgcolor="#cccccc">郵便番号</th>
             <td>
               <%= @customer.zipcode %>
             </td>
           </tr>
           <tr>
-            <th class="col-xs-2">住所</th>
+            <th class="col-xs-2" bgcolor="#cccccc">住所</th>
             <td>
               <%= @customer.address %>
             </td>
           </tr>
           <tr>
-            <th class="col-xs-2">電話番号</th>
+            <th class="col-xs-2" bgcolor="#cccccc">電話番号</th>
             <td>
               <%= @customer.phone_number %>
             </td>
           </tr>
           <tr>
-            <th class="col-xs-2">メールアドレス</th>
+            <th class="col-xs-2" bgcolor="#cccccc">メールアドレス</th>
             <td>
               <%= @customer.email %>
             </td>
@@ -50,11 +50,11 @@
         </tbody>
       </table>
       <p>
-        <strong>配送先</strong>
+        <strong class="mypage-link1">配送先</strong>
           <%= link_to '一覧を見る', addresses_path, class: "btn btn-primary" %>
       </p>
       <p>
-        <strong>注文履歴</strong>
+        <strong class="mypage-link2">注文履歴</strong>
           <%= link_to '一覧を見る', orders_path, class: "btn btn-primary" %>
       </p>
     </div>

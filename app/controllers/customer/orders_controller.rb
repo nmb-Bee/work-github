@@ -34,9 +34,10 @@ class Customer::OrdersController < ApplicationController
 
   end
 
-#チェック
   def create
     @order = Order.new(order_params)
+    @order.total_price = current_customer.total_price * 1.10 + @order.shipfee
+    @order.customer_id = current_customer.id
     @order.save!
     # もし情報入力でnew_addressの場合Addressに保存
     if params[:address_option] == "new_address"
@@ -72,7 +73,8 @@ class Customer::OrdersController < ApplicationController
   end
 
   def index
-      @orders = Order.where(customer_id: current_customer.id).order(created_at: :desc)
+      @orders = Order.all
+      #Order.where(customer_id: current_customer.id).order(created_at: :desc)
   end
 
   def show

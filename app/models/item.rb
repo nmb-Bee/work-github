@@ -6,4 +6,12 @@ class Item < ApplicationRecord
 
 	attachment :image
 
+  def status
+    if on_sale == true
+      "販売中"
+    else
+      "販売停止"
+    end
+  end
+
 end
