@@ -7,11 +7,12 @@
     </div>
     <br>
     <div class="b">
-      <p>退会すると、会員登録情報やこれまでの購入履歴が閲覧できなくなります。退会する場合は、「退会する」をクリックしてください。</p>
+      <p>退会すると、会員登録情報や</br>これまでの購入履歴が閲覧できなくなります。</br>退会する場合は、「退会する」をクリックしてください。</p>
     </div>
     <br>
     <div class="c">
-      <%= link_to "退会する", out_customers_path(current_customer), method: :patch, "data-confilm" => "本当に退会しますか？" %>
+      <%= link_to "退会しない", customers_path, class: 'btn btn-primary' %>
+      <%= link_to "退会する", out_customers_path(current_customer), method: :patch, "data-confilm" => "本当に退会しますか？", class:"btn-danger btn"%>
     </div>
   </div>
 </div>
