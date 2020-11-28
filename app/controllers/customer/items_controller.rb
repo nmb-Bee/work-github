@@ -17,7 +17,7 @@ class Customer::ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @genres = Genre.all
+    @genres = Genre.where(directed_graph: true)
     @cart = Cart.new
   end
 
