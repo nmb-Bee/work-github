@@ -8,7 +8,15 @@
         </table>
       <% end %>
     </div>
-    <h1>おすすめ商品 </h1>
+
+         <p>
+  			    ようこそ、ながのCakeへ！<br>
+            このサイトは、ケーキ販売のECサイトになります。<br>
+            会員でない方も商品の閲覧はできますが、<br>
+            購入には会員登録が必要になります。
+         </p>
+
+    <h3>おすすめ商品 </h3>
     <div class="col-xs-8">
       <% @items.each do |item| %>
         <tr>
@@ -17,6 +25,7 @@
           <td>￥<%= (item.non_taxed_price*1.1).floor %></td>
         </tr>
       <% end %>
+
       </br>
       <div id ="more"><%= link_to "もっとみる", items_path %></div>
     </div>
