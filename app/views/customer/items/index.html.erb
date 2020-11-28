@@ -1,28 +1,29 @@
 <div class="container">
   <div class="row">
 
-<div class="genreback">
-<div class="col-xs-4">
-
-<h3 class="genresearch">ジャンル検索</h3>
-<% @genres.each do |genre| %>
-<table>
-  <td><%= link_to genre.name %></td></br>
-</table>
-<% end %>
-</div>
-</div>
-
-
-<h1>商品一覧 <%#= "全#{@items.count}件" %></h1>
-<div class="col-xs-8">
-<% @items.each do |item| %>
-<tr>
-<td><%= link_to attachment_image_tag(item, :image, :fill, 100, 100, fallback: "no_image.jpg"), item_path(item.id) %></td>
-<td><%= item.name %></td>
-<td>￥<%= (item.non_taxed_price*1.1).floor %></td>
-</tr>
-<% end %>
+    <div class="genreback">
+      <div class="col-xs-3">
+        <h3>ジャンル検索</h3>
+        <% @genres.each do |genre| %>
+          <table>
+            <tbody>
+              <!--有効のみ表示したい-->
+              <td><%= link_to genre.name %></td><br>
+            </tbody>
+          </table>
+        <% end %>
+      </div>
+    </div>
+    <h1>商品一覧 <%#= "全#{@items.count}件" %></h1>
+    <br>
+    <div class="col-xs-9">
+      <% @items.each do |item| %>
+        <tr>
+          <td><%= link_to attachment_image_tag(item, :image, :fill, 100, 100, fallback: "no_image.jpg"), item_path(item.id) %></td>
+          <td><%= item.name %></td>
+          <td>￥<%= (item.non_taxed_price*1.1).floor %></td>
+        </tr>
+      <% end %>
 
 <%= paginate @items %>
 </div>
